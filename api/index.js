@@ -22,7 +22,7 @@ app.listen(3000, () => {
         message: "get me a cup of cofee!"    });
 });*/
 app.use("/api/user", userRouter);
-app.use("/api/auth", authRouter);
+app.use("/api/auth", authRouter);      
 
 app.use((err, req, res, next) => {
 	const statusCode = err.statusCode || 500;
