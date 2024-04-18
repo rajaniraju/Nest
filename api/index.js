@@ -12,7 +12,7 @@ mongoose
 	})
 	.catch((err) => console.log(err));
 const app = express();
-app.use(express.json);
+app.use(express.json());
 app.listen(3000, () => {
 	console.log("server is running on port 3000");
 });
@@ -22,4 +22,4 @@ app.listen(3000, () => {
         message: "get me a cup of cofee!"    });
 });*/
 app.use("/api/user", userRouter);
-app.use("api/auth", authRouter);
+app.use("/api/auth", authRouter);
