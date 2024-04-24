@@ -15,6 +15,9 @@ import {
 	deleteUserStart,
 	deleteUserSuccess,
 	deleteUserFailure,
+	signOutUserStart,
+	signOutUserSuccess,
+	signOutUserFailure,
 } from "../redux/user/userSlice.js";
 import { useDispatch } from "react-redux";
 // firebase coede for rules (inside storage.service firebase.storage {
@@ -110,6 +113,20 @@ export default function Profile() {
 			dispatch(deleteUserFailure(error.message));
 		}
 	};
+	const handleSignout = async () => {
+		try {
+			dispatch(signOutUserStart());
+			const res = await fetch("api/auth/signout");
+			const data = await res.json();
+			if (data.success === false) {
+				dispatch(signOutUserFailure(data.message));
+				return;
+			}
+			dispatch(signOutUserSuccess(data));
+		} catch (error) {
+			dispatch(signOutUserFailure(error.message));
+		}
+	};
 
 	return (
 		<div className='p-3 max-w-lg mx-auto'>
@@ -177,7 +194,11 @@ export default function Profile() {
 					className='text-red-700 cursor-pointer'>
 					Delete Account
 				</span>
-				<span className='text-red-700 cursor-pointer'>Sign out</span>
+				<span
+					onClick={handleSignout}
+					className='text-red-700 cursor-pointer'>
+					Sign out
+				</span>
 			</div>
 			<p className='text-red-700 mt-5'>{error ? error : ""}</p>
 			<p className='text-green-700 mt-5'>
