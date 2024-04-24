@@ -131,6 +131,9 @@ export default function CreateListing() {
 							Upload
 						</button>
 					</div>
+					<button className='p-3 bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80 '>
+						Create Listing
+					</button>
 				</div>
 			</form>
 		</main>
