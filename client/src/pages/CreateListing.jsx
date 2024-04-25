@@ -13,7 +13,7 @@ export default function CreateListing() {
 	const [formData, setFormData] = useState({
 		imageUrls: [],
 		name: "",
-		description: "",
+		descryption: "",
 		address: "",
 		type: "rent",
 		bedrooms: 1,
@@ -160,10 +160,10 @@ export default function CreateListing() {
 						type='textarea'
 						placeholder='Description'
 						className='border p-3 rounded-lg '
-						id='description'
+						id='descryption'
 						required
 						onChange={handleChange}
-						value={formData.description}
+						value={formData.descryption}
 					/>
 					<input
 						type='text'
