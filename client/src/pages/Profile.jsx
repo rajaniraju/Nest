@@ -42,6 +42,7 @@ export default function Profile() {
 	const [formData, setFormData] = useState({});
 	const [updateSuccess, setUpdateSuccess] = useState(false);
 	const [showListingsError, setshowListingsError] = useState(false);
+	const [userListings, setUserListings] = useState([]);
 	const dispatch = useDispatch();
 	console.log(formData);
 	console.log(filepercent);
@@ -74,6 +75,7 @@ export default function Profile() {
 			}
 		);
 	};
+
 	const handleChange = (e) => {
 		setFormData({ ...formData, [e.target.id]: e.target.value });
 	};
@@ -140,10 +142,18 @@ export default function Profile() {
 				setshowListingsError(true);
 				return;
 			}
+			setUserListings(data);
+			console.log(userListings);
+			console.log(userListings[0]);
 		} catch (error) {
 			setshowListingsError(true);
 		}
 	};
+
+	useEffect(() => {
+		console.log(userListings);
+		handleShowListings();
+	}, []);
 
 	return (
 		<div className='p-3 max-w-lg mx-auto'>
@@ -232,6 +242,14 @@ export default function Profile() {
 			<p className='text-red-700 mt-5'>
 				{showListingsError ? "Error showing listings" : ""}
 			</p>
+			{userListings.map((listing) => {
+				return (
+					<div key={listing._id}>
+						{listing.name}
+						<img src={listing.imageUrls[0]} alt='listing cover' />
+					</div>
+				);
+			})}
 		</div>
 	);
 }
