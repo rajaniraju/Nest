@@ -3,11 +3,13 @@ import {
 	createListing,
 	deleteListing,
 	updateListing,
+	getListing,
 } from "../controllers/listingController.js";
 import { verifyToken } from "../utils/verifyUser.js";
 const listingRouter = express.Router();
 
 listingRouter.post("/create", verifyToken, createListing);
 listingRouter.delete("/delete/:id", verifyToken, deleteListing);
-listingRouter.post("/edit/:id", verifyToken, updateListing);
+listingRouter.post("/update/:id", verifyToken, updateListing);
+listingRouter.get("/get/:id", getListing);
 export default listingRouter;
